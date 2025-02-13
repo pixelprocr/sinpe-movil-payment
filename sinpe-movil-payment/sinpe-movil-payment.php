@@ -8,7 +8,52 @@ Author: PixelPRO
 Author URI: https://pixelprocr.com
 License: GPL2
 */
+<?php
+/*
+Plugin Name: Sinpe Movil Payment
+Description: Integración de pago móvil para Sinpe.
+Version: 1.0.0
+Author: Tu Nombre
+*/
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly.
+}
+
+// Include the Freemius SDK.
+if ( ! function_exists( 'smp_fs' ) ) {
+    // Create a helper function for easy SDK access.
+    function smp_fs() {
+        global $smp_fs;
+
+        if ( ! isset( $smp_fs ) ) {
+            // Include Freemius SDK.
+            require_once dirname( __FILE__ ) . '/vendor/freemius/start.php';
+            $smp_fs = fs_dynamic_init( array(
+                'id'                  => '17926',
+                'slug'                => 'sinpe-movil-payment',
+                'type'                => 'plugin',
+                'public_key'          => 'pk_199a682b117740e284302c2019b79',
+                'is_premium'          => false,
+                'has_addons'          => false,
+                'has_paid_plans'      => false,
+                'menu'                => array(
+                    'account'        => false,
+                    'support'        => false,
+                ),
+            ) );
+        }
+
+        return $smp_fs;
+    }
+
+    // Init Freemius.
+    smp_fs();
+    // Signal that SDK was initiated.
+    do_action( 'smp_fs_loaded' );
+}
+
+// Your plugin code goes here.
 // Enable debug logging for SINPE Móvil plugin. Set to true to enable debugging.
 if ( ! defined( 'SINPE_DEBUG' ) ) {
 	define( 'SINPE_DEBUG', true );
