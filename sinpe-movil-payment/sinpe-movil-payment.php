@@ -8,13 +8,6 @@ Author: PixelPRO
 Author URI: https://pixelprocr.com
 License: GPL2
 */
-<?php
-/*
-Plugin Name: Sinpe Movil Payment
-Description: Integración de pago móvil para Sinpe.
-Version: 1.0.0
-Author: Tu Nombre
-*/
 
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
